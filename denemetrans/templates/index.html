@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %} {% trans 'index' %} {% endblock %}
+{% block body %}
+    <div class="container">
+        <form>
+            <div class="form-group col-md-3">
+                <label for="name">{% trans "Name" %} </label>
+                <input type="text" class="form-control" id="name" placeholder="Ad">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="surname">{% trans "Surname" %}</label>
+                <input type="text" class="form-control" id="surname" placeholder="Soyad">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">{% trans "E-Mail" %}</label>
+                <input type="email" class="form-control" id="email" placeholder="E-Mail">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="password1">{% trans "Password" %}</label>
+                <input type="password" class="form-control" id="password1">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="password2">{% trans "Password" %}</label>
+                <input type="password" class="form-control" id="password2">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="city">{% trans "City" %} </label>
+                <select id="city" class="form-control">
+                    <option>Adana</option>
+                    <option>Ankara</option>
+                    <option>Mersin</option>
+                    <option>İstanbul</option>
+                    <option>İzmir</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-success " value="{% trans "Send" %}">
+        </form>
+    </div>
+{% endblock %}

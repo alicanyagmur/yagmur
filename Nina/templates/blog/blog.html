@@ -1,0 +1,352 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Nina Yağmur | Post </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{% static 'css/Blog-Css/bootstrap.min.css' %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'css/Blog-Css/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'css/Blog-Css/AdminLTE.min.css' %}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+      folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{% static 'css/Blog-Css/_all-skins.min.css' %}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>NY</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Nina Yağmur</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{% static 'img/Blog-img/user2-160x160.jpg' %}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ request.user.get_full_name }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="{% static 'img/Blog-img/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
+
+                <p>
+                  {{ request.user.get_full_name }}
+                  <small>Kayıt tarihi : {{ request.user.date_joined|date:"d:m:Y" }}</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="text-center">
+          <img src="{% static 'img/Blog-img/user2-160x160.jpg' %}" class="img-circle" alt="User Image">
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request.Get.q }}">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="{% url 'home' %}">
+            <i class="fa fa-dashboard"></i> <span>home</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{% url 'post:blog' %}">
+            <i class="fa fa-th"></i> <span>Blog</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book"></i>
+            <span>Dersler</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=""><i class="fa fa-circle-o"></i> İngilizce</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> İtalyanca</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Makedonca</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Türkçe</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Examples</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=""><i class="fa fa-circle-o"></i> Invoice</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Profile</a></li>
+          </ul>
+        </li>
+        <li><a href="https://adminlte.io/docs"><i class="fa fa-circle"></i> <span>Canlı Ders</span></a></li>
+        <li>
+          <a href="{% url 'calendr:calendar' %}">
+            <i class="fa fa-calendar"></i> <span>Rezervasyon</span>
+          </a>
+        </li>
+        <li class="treeview">
+          &nbsp;
+        </li>
+        <li class="treeview">
+          &nbsp;
+        </li> 
+        <li >
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-instagram">
+                    <i class="fa fa-instagram"></i> Instagram
+              </a> 
+          </div>
+        </li>
+        <li >
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-facebook">
+                <i class="fa fa-facebook"></i> Facebook
+              </a> 
+          </div>
+        </li>
+        <li>
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-linkedin">
+                <i class="fa fa-linkedin"></i> LinkedIn
+              </a> 
+          </div>
+        </li>
+        <li>
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-twitter">
+                <i class="fa fa-twitter"></i> Twitter
+              </a> 
+          </div>
+        </li>
+        <li>
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-youtube">
+                <i class="fa fa-youtube"></i> YouTube
+              </a> 
+          </div>
+        </li>
+        <li class="treeview">
+          <div class="text-center">
+              <a class="btn btn-block btn-social btn-vk">
+                <i class="fa fa-vk"></i> VK
+              </a>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blog
+        <small>Preview page</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Blog</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- =========================================================== -->
+
+      <div class="row">
+        <div class="col-md-2">
+        </div>  
+        <div class="col-md-8">
+          {% if request.user.is_superuser %}
+            <a type="button" class="btn btn-block btn-success" href="{% url 'post:create' %}">Write new post</a>
+            <p></p>
+          {% endif %}
+        <!-- =========================================================== -->
+        <!-- =========================================================== -->
+          <!-- Box Comment -->
+            {% for post in posts %}
+              <div class="box box-widget">
+                <div class="box-header with-border">
+                  <div class="user-block">
+                    <img class="img-circle" src="{% static 'img/Blog-img/user1-128x128.jpg' %}" alt="User Image">
+                      {# {% url 'post:detail' id=post.id %} #}
+                    <span class="username"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></span>
+                    <span class="description">{{ post.publishing_date |timesince}} önce</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                  <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body ">
+                  <a href="{{ post.get_absolute_url }}">
+                    {% if post.image %}
+                        <img class="img-responsive pad"  src="{{ post.image.url }}" alt="Photo">
+                    {% endif %}
+                  </a>
+
+                  <p>{{ post.content|safe | linebreaks |truncatechars:200}}</p>
+                </div>
+                <!-- /.box-body -->
+                {% if post.comments.all %}
+                    <div class="box-footer box-comments">
+                      <div class="box-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="{% static 'img/Blog-img/user3-128x128.jpg' %}" alt="User Image">
+
+                        <div class="comment-text">
+                              <span class="username">
+                                {{ post.comments.first.user.get_full_name }}
+                                <span class="text-muted pull-right">{{ post.comments.first.created_date | timesince }} önce</span>
+                              </span><!-- /.username -->
+                          {{ post.comments.first.content|linebreaks }}
+                        </div>
+                        <!-- /.comment-text -->
+                      </div>
+                      <!-- /.box-comment -->
+                    </div>
+                    <div class="box-footer box-comments">
+                      <div class="box-comment">
+                        <!-- User image -->
+                        <img class="img-circle img-sm" src="{% static 'img/Blog-img/user3-128x128.jpg' %}" alt="User Image">
+
+                        <div class="comment-text">
+                              <span class="username">
+                                {{ post.comments.last.user.get_full_name }}
+                                <span class="text-muted pull-right">{{ post.comments.last.created_date | timesince }} önce</span>
+                              </span><!-- /.username -->
+                          {{ post.comments.last.content|linebreaks }}
+                        </div>
+                        <!-- /.comment-text -->
+                      </div>
+                      <!-- /.box-comment -->
+                    </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          <!-- /.box -->
+        <!-- =========================================================== -->
+        <!-- =========================================================== -->
+
+        <nav aria-label="Page navigation example center">
+          <ul class="pagination">
+            {% if posts.has_previous %}
+               <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a></li>
+            {% else %}
+               <li class="page-item"><a class="page-link" disabled>Previous</a></li>
+            {% endif %}
+            {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+               <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }} {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a></li>
+            {% endif %}
+            {% if not posts.has_next %}
+               <li class="page-item"><a class="page-link" disabled>Next</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.2.0
+    </div>
+    <strong>Copyright &copy; 2019 <a href="https://adminlte.io">Ali Yağmur</a>.</strong> All rights
+    reserved.
+  </footer>
+
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="{% static 'js/Blog-Js/jquery.min.js' %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static 'js/Blog-Js/bootstrap.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'js/Blog-Js/adminlte.min.js' %}"></script>
+</body>
+</html>
